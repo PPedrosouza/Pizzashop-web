@@ -1,10 +1,11 @@
+import { RouterProvider } from 'react-router-dom'
 import { Button } from './components/ui/button'
 import './global.css'
+import { router } from './pages/routes'
 
 export function App() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-svh">
-      <Button>Click me</Button>
-    </div>
+    <RouterProvider router={router}/>
+
   )
 }
