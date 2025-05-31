@@ -1,7 +1,7 @@
 import {
   createBrowserRouter,
 } from "react-router-dom";
-import { Dashboard } from "./app/dashboard";
+import { Dashboard } from "./app/dashboard/dashboard";
 import { Signin } from "./auth/sign-in";
 import { AppLayout } from "./_layouts/app";
 import { AuthLayout } from "./_layouts/auth";
