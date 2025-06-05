@@ -3,7 +3,7 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 import { z } from 'zod'
 import { toast } from 'sonner'
@@ -17,8 +17,13 @@ const signInForm = z.object({
 type SignInForm = z.infer<typeof signInForm>
 
 export function Signin() {
-    const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignInForm>()
+    const [searchParams] = useSearchParams()
 
+    const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignInForm>({
+        defaultValues: {
+            email: searchParams.get('email') ?? '',
+        },
+    })
     const { mutateAsync: authenticate } = useMutation({
         mutationFn: signIn
     })
