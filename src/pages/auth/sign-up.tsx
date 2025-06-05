@@ -7,6 +7,8 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { z } from 'zod'
 import { toast } from 'sonner'
+import { registerRestaurant } from '@/api/registes-restaurant'
+import { useMutation } from '@tanstack/react-query'
 
 const signUpForm = z.object({
     restaurantName: z.string(),
@@ -22,15 +24,22 @@ export function SignUp() {
 
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignUpForm>()
 
+    const { mutateAsync: registerRestaurantFn } = useMutation({
+        mutationFn: registerRestaurant
+    })
+
     async function handleSignUp(data: SignUpForm) {
         try {
-            console.log(data)
-            await new Promise((resolve) => setTimeout(resolve, 2000))
-
+            await registerRestaurantFn({
+                restaurantName: data.restaurantName,
+                managerName: data.managerName,
+                email: data.email,
+                phone: data.phone,
+            })
             toast.success('Restaurante cadastrado com sucesso!', {
                 action: {
                     label: 'Login',
-                    onClick: () => navigate('/sign-in')
+                    onClick: () => navigate(`/sign-in?email=${data.email}`)
                 }
             })
         } catch (error) {
@@ -76,7 +85,7 @@ export function SignUp() {
 
                         <p className='px-6 text-center text-sm leading-relaxed text-muted-foreground'>
                             Ao continuar, você concorda com nossos{' '}
-                            <a className='underline underline-offset-4' href="">termos de serviços</a>{' '} 
+                            <a className='underline underline-offset-4' href="">termos de serviços</a>{' '}
                             e{' '}
                             <a className='underline underline-offset-4' href="">políticas de privacidade</a>
                         </p>
