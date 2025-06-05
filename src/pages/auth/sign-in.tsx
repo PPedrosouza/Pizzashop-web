@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom'
 
 import { z } from 'zod'
 import { toast } from 'sonner'
+import { useMutation } from '@tanstack/react-query'
+import { signIn } from '@/api/sign-in'
 
 const signInForm = z.object({
     email: z.string().email(),
@@ -17,10 +19,13 @@ type SignInForm = z.infer<typeof signInForm>
 export function Signin() {
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignInForm>()
 
+    const { mutateAsync: authenticate } = useMutation({
+        mutationFn: signIn
+    })
+
     async function handleSignIn(data: SignInForm) {
         try {
-            console.log(data)
-            await new Promise((resolve) => setTimeout(resolve, 2000))
+            await authenticate({ email: data.email })
 
             toast.success('Enviamos um link de autenticação para o seu e-mail!', {
                 action: {
@@ -37,7 +42,7 @@ export function Signin() {
         <>
             <Helmet title='Login' />
             <div className='p-8'>
-                <Button variant='ghost' asChild  className='absolute right-8 top-8'>
+                <Button variant='ghost' asChild className='absolute right-8 top-8'>
                     <Link to='/sign-up'>
                         Novo estabelecimento
                     </Link>
