@@ -5,6 +5,8 @@ import { getMonthRevenue } from "@/api/get-month-revenue";
 import { MetricCardSkeleton } from "./metric-card-skeleton";
 
 export function MonthRevanueCard() {
+    // throw new Error('Erro no card!')
+
     const { data: monthRevenue } = useQuery({
         queryFn: getMonthRevenue,
         queryKey: ['metrics', 'month-revenue']
