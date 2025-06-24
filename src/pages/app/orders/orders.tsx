@@ -76,10 +76,11 @@ export function Orders() {
                                     result.orders.map((order) => {
                                         return <OrderTableRow key={order.orderId} order={order} />
                                     })}
+
+                                {isLoadingOrders && <OrderTableSkeleton />}
                             </TableBody>
                         </Table>
                     </div>
-                    {isLoadingOrders && <OrderTableSkeleton />}
 
                     {result && (
                         <Pagination
