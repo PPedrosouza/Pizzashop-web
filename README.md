@@ -51,7 +51,7 @@ Este projeto é um painel web para gestão de pedidos de pizzarias, desenvolvido
 
 1. Clone o repositório:
    ```sh
-   git clone https://github.com/seu-usuario/pizzashop-web.git
+   git clone https://github.com/PPedrosouza/pizzashop-web.git
    cd pizzashop-web
    ```
 
@@ -63,16 +63,10 @@ Este projeto é um painel web para gestão de pedidos de pizzarias, desenvolvido
 ## Executando em Desenvolvimento
 
 ```sh
-pnpm dev
+pnpm run dev
 ```
 
 Acesse [http://localhost:5173](http://localhost:5173) no navegador.
-
-## Build para Produção
-
-```sh
-pnpm build
-```
 
 ## Rodando Testes
 
