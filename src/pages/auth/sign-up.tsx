@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { z } from 'zod'
 import { toast } from 'sonner'
-import { registerRestaurant } from '@/api/registes-restaurant'
+import { registerRestaurant } from '@/api/register-restaurant'
 import { useMutation } from '@tanstack/react-query'
 
 const signUpForm = z.object({
