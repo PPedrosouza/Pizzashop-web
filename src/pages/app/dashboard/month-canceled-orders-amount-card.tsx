@@ -20,7 +20,7 @@ export function MonthCanceledOrderAmountCard() {
             </CardHeader>
 
             <CardContent className='space-y-1'>
-                {monthCanceledOrdersAmount && typeof monthCanceledOrdersAmount.amount === 'number' ? (
+                {monthCanceledOrdersAmount ? (
                     <>
                         <span className='text-2xl font-bold tracking-tight'>
                             {monthCanceledOrdersAmount.amount.toLocaleString('pt-BR')}
